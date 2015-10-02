@@ -20,6 +20,7 @@
 
 -(void)initialize: (CDVInvokedUrlCommand*)command {
 	CDVPluginResult *pluginResult = nil;
+    NSError *error;
 	PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
     if (![crashReporter enableCrashReporterAndReturnError: &error]) {
         NSLog(@"Warning: Could not enable crash reporter: %@", error);
