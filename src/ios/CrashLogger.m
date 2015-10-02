@@ -59,14 +59,14 @@
     
     NSString *humanReadableReport = [PLCrashReportTextFormatter stringValueForCrashReport:report withTextFormat:PLCrashReportTextFormatiOS];
     
-    NSMutableDictionary *resultInfo = [NSMutableDictionary dictionaryWithCapacity:0];
-    [resultSetDic setObject:report.systemInfo.timestamp forKey:@"timestamp"];
-    [resultSetDic setObject:report.signalInfo.name forKey:@"signal"];
-    [resultSetDic setObject:report.signalInfo.code forKey:@"code"];
-    [resultSetDic setObject:report.signalInfo.address forKey:@"address"];
-    [resultSetDic setObject:humanReadableReport forKey:@"report"];
+    NSMutableDictionary *resultInfoDic = [NSMutableDictionary dictionaryWithCapacity:0];
+    [resultInfoDic setObject:report.systemInfo.timestamp forKey:@"timestamp"];
+    [resultInfoDic setObject:report.signalInfo.name forKey:@"signal"];
+    [resultInfoDic setObject:report.signalInfo.code forKey:@"code"];
+    [resultInfoDic setObject:report.signalInfo.address forKey:@"address"];
+    [resultInfoDic setObject:humanReadableReport forKey:@"report"];
     
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:hasPendingCrashReport];
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultInfoDic];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
