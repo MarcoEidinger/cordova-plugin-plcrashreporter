@@ -13,6 +13,7 @@
  */
 @interface CrashLogger : CDVPlugin
 
+- (void)initialize: (CDVInvokedUrlCommand*)command;
 - (void)hasPendingCrashReports: (CDVInvokedUrlCommand*)command;
 
 @end

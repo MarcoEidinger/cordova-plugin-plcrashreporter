@@ -3,7 +3,7 @@
     <name>CrashLogger</name>
     
     <js-module name="CrashLogger" src="www/CrashLogger.js">//points to the JSInterface you created within www folder
-        <clobbers target="CrashReporterPlugin"/> //this will assign your Interface object to window.myCustomPluginObject so it is accessible in html file later
+        <clobbers target="CrashLogger"/> //this will assign your Interface object to window.myCustomPluginObject so it is accessible in html file later
     </js-module>
     
     <platform name="ios">
