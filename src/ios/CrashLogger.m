@@ -60,13 +60,15 @@
     NSString *humanReadableReport = [PLCrashReportTextFormatter stringValueForCrashReport:report withTextFormat:PLCrashReportTextFormatiOS];
     
     NSMutableDictionary *resultInfoDic = [NSMutableDictionary dictionaryWithCapacity:0];
+    [resultInfoDic setObject:report.systemInfo.operatingSystemVersion forKey:@"operatingSystemVersion"];
+    [resultInfoDic setObject:report.systemInfo.operatingSystemBuild forKey:@"operatingSystemBuild"];
     [resultInfoDic setObject:report.systemInfo.timestamp forKey:@"timestamp"];
     [resultInfoDic setObject:report.signalInfo.name forKey:@"signal"];
     [resultInfoDic setObject:report.signalInfo.code forKey:@"code"];
-    [resultInfoDic setObject:report.signalInfo.address forKey:@"address"];
+    //[resultInfoDic setObject:report.signalInfo.address forKey:@"address"];
     [resultInfoDic setObject:humanReadableReport forKey:@"report"];
     
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultInfoDic];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultInfoDic];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
