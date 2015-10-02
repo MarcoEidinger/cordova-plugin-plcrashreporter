@@ -34,26 +34,58 @@ function CrashLogger() {
 //     });
 }
 
-CrashLogger.prototype.initialize = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "CrashLogger", "initialize", []);
+CrashLogger.prototype.initialize = function() {
+	var oPromise = new Promise(function(resolve, reject) {
+    	var fnResolveCallback = function() {
+    		resolve();
+		}
+        cordova.exec(fnResolveCallback, fnResolveCallback, "CrashLogger", "initialize", []);
+    });
+    return oPromise;
 };
 
 
-CrashLogger.prototype.hasPendingCrashReport = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "CrashLogger", "hasPendingCrashReport", []);
+CrashLogger.prototype.hasPendingCrashReport = function() {
+	var oPromise = new Promise(function(resolve, reject) {
+    	var fnSuccessCallback = function(bHasPendingCrashReportIndicator) {
+    		resolve(bHasPendingCrashReportIndicator);
+		}
+    	var fnErrorCallback = function() {
+    		resolve(false);
+		}
+    	cordova.exec(fnSuccessCallback, fnErrorCallback, "CrashLogger", "hasPendingCrashReport", []);
+    });
+    return oPromise;
 };
 
-CrashLogger.prototype.loadPendingCrashReport = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "CrashLogger", "loadPendingCrashReport", []);
+CrashLogger.prototype.loadPendingCrashReport = function() {
+	var oPromise = new Promise(function(resolve, reject) {
+    	var fnSuccessCallback = function(oReport) {
+    		resolve(oReport);
+		}
+    	var fnErrorCallback = function(oError) {
+    		reject(oError);
+		}
+    	cordova.exec(fnSuccessCallback, fnErrorCallback, "CrashLogger", "loadPendingCrashReport", []);
+    });
+    return oPromise;
 };
 
 CrashLogger.prototype.purgePendingCrashReport = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "CrashLogger", "purgePendingCrashReport", []);
+	var oPromise = new Promise(function(resolve, reject) {
+    	var fnSuccessCallback = function() {
+    		resolve();
+		}
+    	var fnErrorCallback = function(oError) {
+    		reject(oError);
+		}
+    	cordova.exec(fnSuccessCallback, fnErrorCallback, "CrashLogger", "purgePendingCrashReport", []);
+    });
+    return oPromise;
 };
 
 CrashLogger.prototype.forceCrash = function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "CrashLogger", "forceCrash", []);
 };
-
 
 module.exports = new CrashLogger();
