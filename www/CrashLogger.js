@@ -51,4 +51,9 @@ CrashLogger.prototype.purgePendingCrashReport = function(successCallback, errorC
     cordova.exec(successCallback, errorCallback, "CrashLogger", "purgePendingCrashReport", []);
 };
 
+CrashLogger.prototype.forceCrash = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "CrashLogger", "forceCrash", []);
+};
+
+
 module.exports = new CrashLogger();

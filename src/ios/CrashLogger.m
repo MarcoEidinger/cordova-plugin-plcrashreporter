@@ -78,4 +78,8 @@
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
+
+- (void)forceCrash: (CDVInvokedUrlCommand*)command {
+    int *x = NULL; *x = 42;
+}
 @end

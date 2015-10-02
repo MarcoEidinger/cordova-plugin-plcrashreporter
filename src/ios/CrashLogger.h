@@ -18,4 +18,6 @@
 - (void)loadPendingCrashReport: (CDVInvokedUrlCommand*)command;
 - (void)purgePendingCrashReport: (CDVInvokedUrlCommand*)command;
 
+- (void)forceCrash: (CDVInvokedUrlCommand*)command;
+
 @end
