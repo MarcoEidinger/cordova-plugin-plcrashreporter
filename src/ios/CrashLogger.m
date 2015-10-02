@@ -59,13 +59,16 @@
     
     NSString *humanReadableReport = [PLCrashReportTextFormatter stringValueForCrashReport:report withTextFormat:PLCrashReportTextFormatiOS];
     
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-dd HH:MM:SS"];
+    NSString* timestampAsString = [formatter stringFromDate:report.systemInfo.timestamp];
+    
     NSMutableDictionary *resultInfoDic = [NSMutableDictionary dictionaryWithCapacity:0];
     [resultInfoDic setObject:report.systemInfo.operatingSystemVersion forKey:@"operatingSystemVersion"];
     [resultInfoDic setObject:report.systemInfo.operatingSystemBuild forKey:@"operatingSystemBuild"];
-    [resultInfoDic setObject:report.systemInfo.timestamp forKey:@"timestamp"];
+    [resultInfoDic setObject:timestampAsString forKey:@"timestamp"];
     [resultInfoDic setObject:report.signalInfo.name forKey:@"signal"];
     [resultInfoDic setObject:report.signalInfo.code forKey:@"code"];
-    //[resultInfoDic setObject:report.signalInfo.address forKey:@"address"];
     [resultInfoDic setObject:humanReadableReport forKey:@"report"];
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultInfoDic];
