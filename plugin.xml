@@ -13,7 +13,7 @@
             </feature>
         </config-file>
         
-        <framework src="src/ios/CrashReporter.framework" custom="true">
+        <framework src="src/ios/CrashReporter.framework" custom="true" />
 
         <header-file src="src/ios/CrashLogger.h" />//points to your source file
         <source-file src="src/ios/CrashLogger.m" />//points to your source file
