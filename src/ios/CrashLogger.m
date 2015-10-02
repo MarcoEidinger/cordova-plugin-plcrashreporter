@@ -63,13 +63,17 @@
     [formatter setDateFormat:@"yyyy-MM-dd HH:MM:SS"];
     NSString* timestampAsString = [formatter stringFromDate:report.systemInfo.timestamp];
     
+    CFStringRef uuidCFStringRef = CFUUIDCreateString(NULL, report.uuidRef);
+    NSString *uuidNSString = (__bridge_transfer NSString *)uuidCFStringRef;
+    
     NSMutableDictionary *resultInfoDic = [NSMutableDictionary dictionaryWithCapacity:0];
+    [resultInfoDic setObject:uuidNSString forKey:@"uuid"];
+    [resultInfoDic setObject:timestampAsString forKey:@"timestamp"];
     [resultInfoDic setObject:report.systemInfo.operatingSystemVersion forKey:@"operatingSystemVersion"];
     [resultInfoDic setObject:report.systemInfo.operatingSystemBuild forKey:@"operatingSystemBuild"];
-    [resultInfoDic setObject:timestampAsString forKey:@"timestamp"];
     [resultInfoDic setObject:report.signalInfo.name forKey:@"signal"];
     [resultInfoDic setObject:report.signalInfo.code forKey:@"code"];
-    [resultInfoDic setObject:humanReadableReport forKey:@"report"];
+    [resultInfoDic setObject:humanReadableReport forKey:@"detailedDescription"];
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultInfoDic];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
