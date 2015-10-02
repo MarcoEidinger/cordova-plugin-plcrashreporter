@@ -39,8 +39,16 @@ CrashLogger.prototype.initialize = function(successCallback, errorCallback) {
 };
 
 
-CrashLogger.prototype.hasPendingCrashReports = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "CrashLogger", "hasPendingCrashReports", []);
+CrashLogger.prototype.hasPendingCrashReport = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "CrashLogger", "hasPendingCrashReport", []);
+};
+
+CrashLogger.prototype.loadPendingCrashReport = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "CrashLogger", "loadPendingCrashReport", []);
+};
+
+CrashLogger.prototype.purgePendingCrashReport = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "CrashLogger", "purgePendingCrashReport", []);
 };
 
 module.exports = new CrashLogger();
