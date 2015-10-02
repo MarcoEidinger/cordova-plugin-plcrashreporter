@@ -75,7 +75,7 @@
 - (void)purgePendingCrashReport: (CDVInvokedUrlCommand*)command {
     PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
     [crashReporter purgePendingCrashReport];
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:hasPendingCrashReport];
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 @end
