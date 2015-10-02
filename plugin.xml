@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.eidinger.cordova.plugin.crashlogger" version="1.0.0">
+    <name>CrashLogger</name>
+    
+    <js-module name="CrashLogger" src="www/CrashLogger.js">//points to the JSInterface you created within www folder
+        <clobbers target="CrashReporterPlugin"/> //this will assign your Interface object to window.myCustomPluginObject so it is accessible in html file later
+    </js-module>
+    
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*"> // this part will modify the config.xml file by adding your feature
+            <feature name="CrashLogger">
+                <param name="ios-package" value="CrashLogger" />
+            </feature>
+        </config-file>
+        
+        <framework src="src/ios/CrashReporter.framework" custom="true">
+
+        <header-file src="src/ios/CrashLogger.h" />//points to your source file
+        <source-file src="src/ios/CrashLogger.m" />//points to your source file
+    </platform>
+
+</plugin>
+
